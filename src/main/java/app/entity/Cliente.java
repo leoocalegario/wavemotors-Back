@@ -7,6 +7,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,6 +36,8 @@ public class Cliente {
 	@NotBlank
 	private String nome;
 	
+	@Min(value = 18, message = "A pessoa deve ter pelo menos 18 anos de idade")
+    @Max(value = 120, message = "A pessoa não pode ter mais de 120 anos de idade")
 	@NotBlank
 	private String idade;
 	

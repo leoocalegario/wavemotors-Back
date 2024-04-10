@@ -1,9 +1,5 @@
 package app.entity;
 
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,6 +37,7 @@ public class Veiculos {
 	@NotBlank
 	private String Modelo;
 	
+    
 	@NotBlank
 	private int ano;
 	
@@ -64,6 +62,7 @@ public class Veiculos {
 	@NotBlank
 	private double ValorCarro;
 	
+	@Pattern(regexp = "^[A-Z]{3}[0-9][A-Z][0-9]{2}$", message = "Placa inválida")
 	@NotBlank
 	private String PlacaCarro;
 	
