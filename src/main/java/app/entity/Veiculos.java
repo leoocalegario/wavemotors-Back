@@ -1,4 +1,4 @@
-package app.entiry;
+package app.entity;
 
 public class Veiculos {
 
