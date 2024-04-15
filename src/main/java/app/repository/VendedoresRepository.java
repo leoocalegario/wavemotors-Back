@@ -1,5 +1,9 @@
 package app.repository;
 
-public class VendedoresRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import app.entity.Vendedores;
+
+public interface VendedoresRepository extends JpaRepository<Vendedores, Long> {
 
 }

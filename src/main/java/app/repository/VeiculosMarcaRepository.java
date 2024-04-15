@@ -1,5 +1,9 @@
 package app.repository;
 
-public class VeiculosMarcaRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
 
+import app.entity.Veiculos;
+
+public interface VeiculosMarcaRepository extends JpaRepository<Veiculos, Long> {
+	
 }
