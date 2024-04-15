@@ -1,11 +1,14 @@
 package app.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -33,7 +36,7 @@ public class Vendedores {
 	private String email;
 	
 	@NotBlank
-	private String Nome;
+	private String nome;
 	
 	@Min(value = 18, message = "A pessoa deve ter pelo menos 18 anos de idade")
     @Max(value = 120, message = "A pessoa não pode ter mais de 120 anos de idade")
@@ -50,13 +53,14 @@ public class Vendedores {
 	private String estado;
 	
 	@Column(name = "flag_User")
-    @Basic
-	private boolean flagTipoUser;
+	private int flagTipoUser;
 	
 	@Column(name = "flag_ativo")
     @Basic
 	private boolean flagAtivo;
 	
 	
-	
+	@OneToMany(mappedBy = "vendedores")
+	@JsonIgnoreProperties("vendedores")
+	private AnuncioVeiculo anuncioveiuculo;
 }

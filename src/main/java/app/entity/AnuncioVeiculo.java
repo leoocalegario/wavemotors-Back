@@ -1,11 +1,16 @@
 package app.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
@@ -19,11 +24,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Veiculos {
+public class AnuncioVeiculo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idCarro;
+	private long idAnuncio;
 	
 	@NotBlank
 	private String data;
@@ -42,7 +47,7 @@ public class Veiculos {
 	private int ano;
 	
 	@NotBlank
-	private String combustivel;
+	private int combustivel;
 	
 	@Column(name = "flag_Ar")
     @Basic
@@ -68,6 +73,19 @@ public class Veiculos {
 	
 	@NotBlank
 	private int Km;
+	
+	@ManyToOne(cascade= CascadeType.MERGE)
+	@JsonIgnoreProperties("anuncio_veiculo")
+	private Vendedores vendedores;
+	
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JsonIgnoreProperties("anuncio_veiculos")
+	private VeiculosMarca veiculosmarca;
+	
+	@OneToMany(mappedBy = "anuncio_veiculo")
+	@JsonIgnoreProperties("anuncio_veiculo")
+	private Proposta proposta;
+	
 	
 	
 }
