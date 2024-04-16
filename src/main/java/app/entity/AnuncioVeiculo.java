@@ -28,7 +28,7 @@ public class AnuncioVeiculo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idAnuncio;
+	private Long idAnuncio;
 	
 	@NotBlank
 	private String data;

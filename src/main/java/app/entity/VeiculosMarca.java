@@ -23,7 +23,8 @@ public class VeiculosMarca {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idMarca;
+	private Long idMarca;
+	
 	@NotBlank
 	private String marca;
 	
