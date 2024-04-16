@@ -1,5 +1,7 @@
 package app.entity;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Basic;
@@ -62,5 +64,7 @@ public class Vendedores {
 	
 	@OneToMany(mappedBy = "vendedores")
 	@JsonIgnoreProperties("vendedores")
-	private AnuncioVeiculo anuncioveiuculo;
+	private List <AnuncioVeiculo> anuncioveiuculo;
+	
+	
 }

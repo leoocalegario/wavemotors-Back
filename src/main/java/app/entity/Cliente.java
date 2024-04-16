@@ -1,5 +1,7 @@
 package app.entity;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Basic;
@@ -69,7 +71,7 @@ public class Cliente {
 	
 	@OneToMany(mappedBy = "cliente")
 	@JsonIgnoreProperties("cliente")
-	private Proposta proposta;
+	private List <Proposta> proposta;
 	
 	
 	
