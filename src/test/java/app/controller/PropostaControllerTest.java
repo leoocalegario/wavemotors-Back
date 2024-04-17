@@ -60,6 +60,7 @@ public class PropostaControllerTest {
 		
 	}
 	
+	
 	@Test
 	@DisplayName("1 -[Exception] Save")
 	void save_Exception() {
@@ -165,5 +166,15 @@ public class PropostaControllerTest {
 		List<Proposta> proposta = response.getBody();
 		assertEquals(2, proposta.size());
 		assertEquals(HttpStatus.OK, response.getStatusCode());
+	}
+	
+	//--------------------------	VerificarValor	------------------------------
+	
+	@Test
+	@DisplayName("[TESTE] VerificarValor")
+	void verificarvalor() {
+		Proposta proposta = new Proposta();
+		proposta.setValorProposta(6000);
+		
 	}
 }

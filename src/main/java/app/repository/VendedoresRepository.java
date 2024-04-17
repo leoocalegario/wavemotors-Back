@@ -16,3 +16,4 @@ public interface VendedoresRepository extends JpaRepository<Vendedores, Long> {
 	
 	public Vendedores findByEmail(String email);
 }
+

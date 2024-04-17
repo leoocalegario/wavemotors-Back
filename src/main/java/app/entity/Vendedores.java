@@ -26,7 +26,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 public class Vendedores {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idVendedor;

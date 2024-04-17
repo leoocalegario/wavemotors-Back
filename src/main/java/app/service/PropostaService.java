@@ -15,6 +15,7 @@ public class PropostaService {
 	private PropostaRepository propostaRepository;
 	
 	public String save(Proposta proposta) {
+		this.verificarValor(proposta);
 		this.propostaRepository.save(proposta);
 		return "Sua proposta foi enviada!";
 	}
@@ -47,5 +48,11 @@ public class PropostaService {
 	
 	public List<Proposta> findByvalorProposta(double valorProposta) {
 		return propostaRepository.findByvalorProposta(valorProposta);
+	}
+	
+	public void verificarValor(Proposta proposta) {
+		if(proposta.getValorProposta() <=5000) {
+			throw new RuntimeException("Não é possivel salvar a proposta menores que R$5000,00 reais");
+		}
 	}
 }
