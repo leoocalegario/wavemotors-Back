@@ -32,7 +32,7 @@ public class VeiculosMarcaService {
 		return "Marca deletada com sucesso";
 	}
 	
-	public List<VeiculosMarca> listAll(){
+	public List<VeiculosMarca> findAll(){
 		return this.veiculosmarcarepository.findAll();
 	}
 	

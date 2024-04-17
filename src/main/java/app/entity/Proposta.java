@@ -8,8 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,21 +28,18 @@ public class Proposta {
 	private long idProposta;
 	
 	@NotBlank
-	private String DataCriado;
-	@NotBlank
-	private double ValorProposta;
+	private String dataCriado;
+	@NotNull
+	private double valorProposta;
 	@NotBlank
 	private String DescricaoProposta;
 	
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JsonIgnoreProperties("proposta")
 	private AnuncioVeiculo anuncioveiculo;
 	
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JsonIgnoreProperties("proposta")
 	private Cliente cliente;
-	
-	@OneToMany(mappedBy = "proposta")
-	@JsonIgnoreProperties("proposta")
-	private Proposta proposta;
+
 }

@@ -9,9 +9,9 @@ import app.entity.Proposta;
 
 public interface PropostaRepository extends JpaRepository<Proposta, Long> {
 	
-	public List <Proposta> findByDataCriado (String DataCriado);
+	public List<Proposta> findBydataCriado (String dataCriado);
 	
-	public Proposta findByProposta(double ValorProposta);
+	public List<Proposta> findByvalorProposta (double valorProposta);
 	
 	
 }

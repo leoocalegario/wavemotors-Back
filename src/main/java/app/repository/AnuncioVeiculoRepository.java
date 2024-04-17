@@ -9,10 +9,10 @@ import app.entity.AnuncioVeiculo;
 
 public interface AnuncioVeiculoRepository extends JpaRepository<AnuncioVeiculo, Long> {
 	
-	public AnuncioVeiculo findByIdVeiculos (Long idAnuncio);
+	public AnuncioVeiculo findByidAnuncio (Long idAnuncio);
 	
-	@Query("From Veiculos v where v.NomeVeiculo LIKE %:NomeVeiculo")
-	public List <AnuncioVeiculo> findByNomeLike(String NomeVeiculo);
+	@Query("From Veiculos v where v.nomeVeiculo LIKE %:nomeVeiculo")
+	public List <AnuncioVeiculo> findByNomeVeiculoLike(String nomeVeiculo);
 	
 	
 }

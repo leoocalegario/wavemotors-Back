@@ -85,9 +85,9 @@ public class AnuncioVeiculoController {
 	}
 	
 	@GetMapping("/findByNomeLike")
-	public ResponseEntity<List<AnuncioVeiculo>> findByNomeLike(@RequestParam String nomeveiculo) {
+	public ResponseEntity<List<AnuncioVeiculo>> findByNomeVeiculoLike(@RequestParam String nomeveiculo) {
 	    try {
-	        List<AnuncioVeiculo> anuncioveiculo = this.anuncioveiculoservice.findByNomeLike(nomeveiculo);
+	        List<AnuncioVeiculo> anuncioveiculo = this.anuncioveiculoservice.findByNomeVeiculoLike(nomeveiculo);
 	        return new ResponseEntity<>(anuncioveiculo, HttpStatus.OK);
 	    } catch (Exception e) {
 	        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);

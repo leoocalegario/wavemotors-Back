@@ -40,7 +40,7 @@ public class VeiculosMarcaController {
 	}
 	
 	@PutMapping("/update/{id}")
-	public ResponseEntity<String>update (@RequestBody VeiculosMarca veiculosmarca, @PathVariable Long id ){
+	public ResponseEntity<String>update (@PathVariable Long id ,@RequestBody VeiculosMarca veiculosmarca){
 		try {
 			String mensagem = this.veiculosmarcaservice.update(id, veiculosmarca);
 			return new ResponseEntity<String>(mensagem,HttpStatus.OK);
@@ -51,9 +51,9 @@ public class VeiculosMarcaController {
 	}
 	
 	@GetMapping("/listAll")
-	public ResponseEntity<List<VeiculosMarca>>listAll(){
+	public ResponseEntity<List<VeiculosMarca>>findAll(){
 		try {
-			List<VeiculosMarca> lista = this.veiculosmarcaservice.listAll();
+			List<VeiculosMarca> lista = this.veiculosmarcaservice.findAll();
 			return new ResponseEntity<>(lista,HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);

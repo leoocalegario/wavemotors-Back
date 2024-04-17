@@ -40,8 +40,8 @@ public class AnuncioVeiculoService {
 		return anuncioveiculo;
 	}
 	
-	public List<AnuncioVeiculo> findByNomeLike(String nomeveiculo) {
-		List<AnuncioVeiculo> anuncioveiculo = anuncioveiculorepository.findByNomeLike(nomeveiculo);
+	public List<AnuncioVeiculo> findByNomeVeiculoLike(String nomeveiculo) {
+		List<AnuncioVeiculo> anuncioveiculo = anuncioveiculorepository.findByNomeVeiculoLike(nomeveiculo);
 		return anuncioveiculo;
 	}
 	
