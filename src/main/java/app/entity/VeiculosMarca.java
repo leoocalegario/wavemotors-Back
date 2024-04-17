@@ -22,15 +22,14 @@ import lombok.Setter;
 @Entity
 public class VeiculosMarca {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idMarca;
-	
+
 	@NotBlank
 	private String marca;
-	
-	@OneToMany (mappedBy = "veiculosmarca")
+
+	@OneToMany(mappedBy = "veiculosmarca")
 	@JsonIgnoreProperties("veiculosmarca")
-	private List <AnuncioVeiculo> anuncioveiculo;
+	private List<AnuncioVeiculo> anuncioveiculo;
 }

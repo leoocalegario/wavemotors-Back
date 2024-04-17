@@ -23,77 +23,77 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api/proposta")
 public class PropostaController {
-	
+
 	@Autowired
 	private PropostaService propostaService;
 
 	@PostMapping("/save")
-	public ResponseEntity<String> save(@RequestBody @Valid Proposta proposta){
+	public ResponseEntity<String> save(@RequestBody @Valid Proposta proposta) {
 		try {
 			String mensagem = this.propostaService.save(proposta);
 			return new ResponseEntity<String>(mensagem, HttpStatus.OK);
-		}catch(Exception e) {
-			return new ResponseEntity<> (null,HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
 	@PutMapping("/delete/{id}")
-	public ResponseEntity<String> delete(@PathVariable Long id){
+	public ResponseEntity<String> delete(@PathVariable Long id) {
 		try {
 			String mensagem = this.propostaService.delete(id);
-			return new ResponseEntity<>(mensagem,HttpStatus.OK);
-		}catch(Exception e) {
-			return new ResponseEntity<String>("Ocorreu esse erro: " + e.getMessage(),HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(mensagem, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<String>("Ocorreu esse erro: " + e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
 	@GetMapping("/findById/{id}")
-	public ResponseEntity<Proposta> findById(@PathVariable Long id){
+	public ResponseEntity<Proposta> findById(@PathVariable Long id) {
 		try {
 			Proposta proposta = this.propostaService.findById(id);
-			return new ResponseEntity<>(proposta,HttpStatus.OK);
-		}catch(Exception e) {
-			return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(proposta, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
 	@GetMapping("/listAll")
-	public ResponseEntity<List<Proposta>> findAll(){
+	public ResponseEntity<List<Proposta>> findAll() {
 		try {
 			List<Proposta> proposta = this.propostaService.listAll();
-			return new ResponseEntity<>(proposta,HttpStatus.OK);
-		}catch(Exception e) {
-			return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(proposta, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
 	@PutMapping("/update/{id}")
-	public ResponseEntity<String> update(@PathVariable Long id, @RequestBody @Valid Proposta proposta ){
+	public ResponseEntity<String> update(@PathVariable Long id, @RequestBody @Valid Proposta proposta) {
 		try {
 			String mensagem = this.propostaService.update(proposta, id);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
-		}catch(Exception e) {
+		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
 
 	@GetMapping("/findByDataCriada")
-	public ResponseEntity<List<Proposta>> findBydataCriada (@RequestParam String dataCriada){
+	public ResponseEntity<List<Proposta>> findBydataCriada(@RequestParam String dataCriada) {
 		try {
 			List<Proposta> lista = this.propostaService.findBydataCriado(dataCriada);
-			return new ResponseEntity<>(lista,HttpStatus.OK);
-		}catch(Exception e) {
-			return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
 	@GetMapping("/findByValorProposta")
-	public ResponseEntity<List<Proposta>> findByvalorProposta (@RequestParam double valorProposta){
+	public ResponseEntity<List<Proposta>> findByvalorProposta(@RequestParam double valorProposta) {
 		try {
 			List<Proposta> lista = this.propostaService.findByvalorProposta(valorProposta);
-			return new ResponseEntity<>(lista,HttpStatus.OK);
-		}catch(Exception e) {
-			return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
 }

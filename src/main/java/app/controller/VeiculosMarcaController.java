@@ -19,58 +19,57 @@ import org.springframework.web.bind.annotation.RestController;
 import app.entity.VeiculosMarca;
 import app.service.VeiculosMarcaService;
 
-
 @RestController
 @RequestMapping("/api/veiculosmarca")
 @Validated
 public class VeiculosMarcaController {
-	
+
 	@Autowired
 	private VeiculosMarcaService veiculosmarcaservice;
-	
+
 	@PostMapping("save")
-	public ResponseEntity<String> save (@RequestBody VeiculosMarca veiculosmarca){
+	public ResponseEntity<String> save(@RequestBody VeiculosMarca veiculosmarca) {
 		try {
 			String mensagem = this.veiculosmarcaservice.save(veiculosmarca);
 			return new ResponseEntity<String>(mensagem, HttpStatus.OK);
 		} catch (Exception e) {
-			
-			return new ResponseEntity<String>("erro: " +e.getMessage(),HttpStatus.BAD_REQUEST);
-		}
-	}
-	
-	@PutMapping("/update/{id}")
-	public ResponseEntity<String>update (@PathVariable Long id ,@RequestBody VeiculosMarca veiculosmarca){
-		try {
-			String mensagem = this.veiculosmarcaservice.update(id, veiculosmarca);
-			return new ResponseEntity<String>(mensagem,HttpStatus.OK);
-		} catch (Exception e) {
-			
+
 			return new ResponseEntity<String>("erro: " + e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
+	@PutMapping("/update/{id}")
+	public ResponseEntity<String> update(@PathVariable Long id, @RequestBody VeiculosMarca veiculosmarca) {
+		try {
+			String mensagem = this.veiculosmarcaservice.update(id, veiculosmarca);
+			return new ResponseEntity<String>(mensagem, HttpStatus.OK);
+		} catch (Exception e) {
+
+			return new ResponseEntity<String>("erro: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+	}
+
 	@GetMapping("/listAll")
-	public ResponseEntity<List<VeiculosMarca>>findAll(){
+	public ResponseEntity<List<VeiculosMarca>> findAll() {
 		try {
 			List<VeiculosMarca> lista = this.veiculosmarcaservice.findAll();
-			return new ResponseEntity<>(lista,HttpStatus.OK);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
-			
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+
 		}
 	}
-	
+
 	@GetMapping("/findById/{idMarca}")
-	public ResponseEntity<VeiculosMarca> findById(@PathVariable Long idMarca){
+	public ResponseEntity<VeiculosMarca> findById(@PathVariable Long idMarca) {
 		try {
 			VeiculosMarca veiculosmarca = this.veiculosmarcaservice.findById(idMarca);
-			return new ResponseEntity<>(veiculosmarca,HttpStatus.OK);
+			return new ResponseEntity<>(veiculosmarca, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
 	@DeleteMapping("/delete/{idMarca}")
 	public ResponseEntity<String> delete(@PathVariable Long idMarca) {
 
@@ -84,9 +83,9 @@ public class VeiculosMarcaController {
 		}
 
 	}
-	
+
 	@GetMapping("/findByMarca")
-	public ResponseEntity <VeiculosMarca> findByMarca(@RequestParam String marca) {
+	public ResponseEntity<VeiculosMarca> findByMarca(@RequestParam String marca) {
 		try {
 
 			VeiculosMarca veiculosmarca = this.veiculosmarcaservice.findByMarca(marca);
@@ -98,7 +97,5 @@ public class VeiculosMarcaController {
 
 		}
 	}
-	
-	
 
 }

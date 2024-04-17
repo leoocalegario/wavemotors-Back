@@ -20,74 +20,70 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class AnuncioVeiculo {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idAnuncio;
-	
+
 	@NotBlank
 	private String data;
-	
+
 	@NotBlank
 	private String nomeVeiculo;
-	
+
 	@NotBlank
 	private String Cor;
-	
+
 	@NotBlank
 	private String Modelo;
-	
-    
+
 	@NotBlank
 	private int ano;
-	
+
 	@NotBlank
 	private int combustivel;
-	
+
 	@Column(name = "flag_Ar")
-    @Basic
+	@Basic
 	private boolean FlagArCondicionado;
-	
+
 	@Column(name = "flag_BancoTipo")
-    @Basic
+	@Basic
 	private boolean FlagBancoCouro;
-	
+
 	@Column(name = "flag_Multimidia")
-    @Basic
+	@Basic
 	private boolean FlagMultimidia;
-	
+
 	@NotBlank
 	private String TipoCambio;
-	
+
 	@NotBlank
 	private double ValorCarro;
-	
+
 	@Pattern(regexp = "^[A-Z]{3}[0-9][A-Z][0-9]{2}$", message = "Placa inválida")
 	@NotBlank
 	private String PlacaCarro;
-	
+
 	@NotBlank
 	private int Km;
-	
-	@ManyToOne(cascade= CascadeType.MERGE)
+
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JsonIgnoreProperties("anuncio_veiculo")
 	private Vendedores vendedores;
-	
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JsonIgnoreProperties("anuncio_veiculos")
 	private VeiculosMarca veiculosmarca;
-	
+
 	@OneToMany(mappedBy = "anuncioveiculo")
 	@JsonIgnoreProperties("anuncioveiculo")
-	private List <Proposta> proposta;
-	
-	
-	
+	private List<Proposta> proposta;
+
 }

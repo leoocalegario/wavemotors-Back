@@ -30,49 +30,47 @@ public class Cliente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idUser;
-	
+
 	@NotBlank
 	private String senha;
-	
-	@Email (message = "Email invalido")
+
+	@Email(message = "Email invalido")
 	@NotBlank
 	private String email;
-	
+
 	@NotBlank
 	private String nome;
-	
+
 	@NotBlank
 	private String telefone;
-	
+
 	@Min(value = 18, message = "A pessoa deve ter pelo menos 18 anos de idade")
-    @Max(value = 120, message = "A pessoa não pode ter mais de 120 anos de idade")
+	@Max(value = 120, message = "A pessoa não pode ter mais de 120 anos de idade")
 	@NotBlank
-	private String idade;
-	
+	private int idade;
+
 	@NotBlank
 	private String endereco;
-	
+
 	@NotBlank
 	private String cidade;
-	
+
 	@NotBlank
 	private String estado;
-	
+
 	@NotBlank
 	private String DataCriado;
-	
+
 	@Column(name = "flag_user")
-    @Basic
+	@Basic
 	private boolean flagTipoUser;
-	
+
 	@Column(name = "flag_ativo")
-    @Basic
+	@Basic
 	private boolean flagAtivo;
-	
+
 	@OneToMany(mappedBy = "cliente")
 	@JsonIgnoreProperties("cliente")
-	private List <Proposta> proposta;
-	
-	
-	
+	private List<Proposta> proposta;
+
 }

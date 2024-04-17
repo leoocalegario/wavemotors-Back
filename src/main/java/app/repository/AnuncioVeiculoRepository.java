@@ -8,11 +8,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import app.entity.AnuncioVeiculo;
 
 public interface AnuncioVeiculoRepository extends JpaRepository<AnuncioVeiculo, Long> {
-	
-	public AnuncioVeiculo findByidAnuncio (Long idAnuncio);
-	
+
+	public AnuncioVeiculo findByidAnuncio(Long idAnuncio);
+
 	@Query("From Veiculos v where v.nomeVeiculo LIKE %:nomeVeiculo")
-	public List <AnuncioVeiculo> findByNomeVeiculoLike(String nomeVeiculo);
-	
-	
+	public List<AnuncioVeiculo> findByNomeVeiculoLike(String nomeVeiculo);
+
 }

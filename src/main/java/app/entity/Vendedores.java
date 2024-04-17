@@ -26,45 +26,43 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 public class Vendedores {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idVendedor;
-	
+
 	@NotBlank
 	private String Senha;
-	
+
 	@Email
 	private String email;
-	
+
 	@NotBlank
 	private String nome;
-	
+
 	@Min(value = 18, message = "A pessoa deve ter pelo menos 18 anos de idade")
-    @Max(value = 120, message = "A pessoa não pode ter mais de 120 anos de idade")
+	@Max(value = 120, message = "A pessoa não pode ter mais de 120 anos de idade")
 	@NotBlank
 	private int idade;
-	
+
 	@NotBlank
 	private String endereco;
-	
+
 	@NotBlank
 	private String cidade;
-	
+
 	@NotBlank
 	private String estado;
-	
+
 	@Column(name = "flag_User")
 	private int flagTipoUser;
-	
+
 	@Column(name = "flag_ativo")
-    @Basic
+	@Basic
 	private boolean flagAtivo;
-	
-	
+
 	@OneToMany(mappedBy = "vendedores")
 	@JsonIgnoreProperties("vendedores")
-	private List <AnuncioVeiculo> anuncioveiuculo;
-	
-	
+	private List<AnuncioVeiculo> anuncioveiuculo;
+
 }

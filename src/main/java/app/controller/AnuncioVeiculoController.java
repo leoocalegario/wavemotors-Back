@@ -38,10 +38,10 @@ public class AnuncioVeiculoController {
 		}
 	}
 	
-	@PutMapping("/update/{idAnuncio}")
-	public ResponseEntity<String>update (@RequestBody AnuncioVeiculo anuncioveiculo, @PathVariable Long idAnuncio ){
+	@PutMapping("/update/{id}")
+	public ResponseEntity<String>update (@PathVariable Long id, @RequestBody AnuncioVeiculo anuncioveiculo){
 		try {
-			String mensagem = this.anuncioveiculoservice.update(idAnuncio, anuncioveiculo);
+			String mensagem = this.anuncioveiculoservice.update(id, anuncioveiculo);
 			return new ResponseEntity<String>(mensagem,HttpStatus.OK);
 		} catch (Exception e) {
 			
@@ -49,10 +49,10 @@ public class AnuncioVeiculoController {
 		}
 	}
 	
-	@GetMapping("/listAll")
-	public ResponseEntity<List<AnuncioVeiculo>>listAll(){
+	@GetMapping("/findAll")
+	public ResponseEntity<List<AnuncioVeiculo>>findAll(){
 		try {
-			List<AnuncioVeiculo> lista = this.anuncioveiculoservice.listAll();
+			List<AnuncioVeiculo> lista = this.anuncioveiculoservice.findAll();
 			return new ResponseEntity<>(lista,HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
@@ -85,9 +85,9 @@ public class AnuncioVeiculoController {
 	}
 	
 	@GetMapping("/findByNomeLike")
-	public ResponseEntity<List<AnuncioVeiculo>> findByNomeVeiculoLike(@RequestParam String nomeveiculo) {
+	public ResponseEntity<List<AnuncioVeiculo>> findByNomeVeiculoLike(@RequestParam String nomeVeiculo) {
 	    try {
-	        List<AnuncioVeiculo> anuncioveiculo = this.anuncioveiculoservice.findByNomeVeiculoLike(nomeveiculo);
+	        List<AnuncioVeiculo> anuncioveiculo = this.anuncioveiculoservice.findByNomeVeiculoLike(nomeVeiculo);
 	        return new ResponseEntity<>(anuncioveiculo, HttpStatus.OK);
 	    } catch (Exception e) {
 	        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);

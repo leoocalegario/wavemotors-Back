@@ -8,11 +8,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import app.entity.Cliente;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
-	
-	public List <Cliente> findByNome(String nome);
-	
+
+	public List<Cliente> findByNome(String nome);
+
 	@Query("FROM Cliente c where c.nome LIKE %:nome")
 	public List<Cliente> findByNomeLike(String nome);
-	
-	public List <Cliente> findByCidade(String cidade);
+
+	public List<Cliente> findByCidade(String cidade);
 }
