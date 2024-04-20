@@ -28,7 +28,7 @@ public class AnuncioVeiculoController {
 	private AnuncioVeiculoService anuncioveiculoservice;
 	
 	@PostMapping("save")
-	public ResponseEntity<String> save (@RequestBody AnuncioVeiculo anuncioveiculo){
+	public ResponseEntity<String> save ( @RequestBody AnuncioVeiculo anuncioveiculo){
 		try {
 			String mensagem = this.anuncioveiculoservice.save(anuncioveiculo);
 			return new ResponseEntity<String>(mensagem, HttpStatus.OK);
@@ -39,7 +39,7 @@ public class AnuncioVeiculoController {
 	}
 	
 	@PutMapping("/update/{id}")
-	public ResponseEntity<String>update (@PathVariable Long id, @RequestBody AnuncioVeiculo anuncioveiculo){
+	public ResponseEntity<String>update ( @PathVariable Long id, @RequestBody AnuncioVeiculo anuncioveiculo){
 		try {
 			String mensagem = this.anuncioveiculoservice.update(id, anuncioveiculo);
 			return new ResponseEntity<String>(mensagem,HttpStatus.OK);

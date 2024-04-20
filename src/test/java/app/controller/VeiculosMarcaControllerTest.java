@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -45,6 +46,9 @@ public class VeiculosMarcaControllerTest {
 		when(this.repository.save(any(VeiculosMarca.class))).thenReturn(veiculosmarcaSalva); //AO CHAMAR O METODO ELE RETORNA O OBJETO
 		when(this.repository.findAll()).thenReturn(veiculosmarca); // RETORNA A LISTA DE MARCAS
 		when(this.repository.findByMarca("HONDA")).thenReturn(veiculosmarcaSalva); //
+		when(this.repository.findById(1L)).thenReturn(Optional.of(veiculosmarcaSalva));
+		doNothing().when(this.repository).deleteById(any(Long.class));
+		
 	}
 
 	// ------------------------ Save -----------------------------

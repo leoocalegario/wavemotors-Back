@@ -15,6 +15,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,10 +44,12 @@ public class Cliente {
 
 	@NotBlank
 	private String telefone;
-
+	
+	
+	//VALIDACAO DE IDADE
 	@Min(value = 18, message = "A pessoa deve ter pelo menos 18 anos de idade")
 	@Max(value = 120, message = "A pessoa não pode ter mais de 120 anos de idade")
-	@NotBlank
+	@NotNull
 	private int idade;
 
 	@NotBlank
@@ -60,11 +63,13 @@ public class Cliente {
 
 	@NotBlank
 	private String DataCriado;
-
+	
+	//SINALIZA SE É CLIENTE OU ADM
 	@Column(name = "flag_user")
 	@Basic
 	private boolean flagTipoUser;
 
+	//IDENTIFICA SE O USUARIO ESTA ATIVO ADM/CLIENTE PADRAO
 	@Column(name = "flag_ativo")
 	@Basic
 	private boolean flagAtivo;

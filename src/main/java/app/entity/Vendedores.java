@@ -15,6 +15,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,7 +43,7 @@ public class Vendedores {
 
 	@Min(value = 18, message = "A pessoa deve ter pelo menos 18 anos de idade")
 	@Max(value = 120, message = "A pessoa não pode ter mais de 120 anos de idade")
-	@NotBlank
+	@NotNull
 	private int idade;
 
 	@NotBlank
@@ -54,15 +55,15 @@ public class Vendedores {
 	@NotBlank
 	private String estado;
 
-	@Column(name = "flag_User")
+	@Column(name = "flag_User") //flag para distincao de vendedor e admin
 	private int flagTipoUser;
 
-	@Column(name = "flag_ativo")
+	@Column(name = "flag_ativo") //flag para distincao de usuario ativo e desativado
 	@Basic
 	private boolean flagAtivo;
 
-	@OneToMany(mappedBy = "vendedores")
+	@OneToMany(mappedBy = "vendedores") //relacao de cardialidade one to many
 	@JsonIgnoreProperties("vendedores")
-	private List<AnuncioVeiculo> anuncioveiuculo;
+	private List<AnuncioVeiculo> anuncioveiculo;
 
 }

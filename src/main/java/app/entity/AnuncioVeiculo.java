@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -43,10 +44,10 @@ public class AnuncioVeiculo {
 	@NotBlank
 	private String Modelo;
 
-	@NotBlank
+	@NotNull
 	private int ano;
 
-	@NotBlank
+	@NotNull
 	private int combustivel;
 
 	@Column(name = "flag_Ar")
@@ -64,14 +65,14 @@ public class AnuncioVeiculo {
 	@NotBlank
 	private String TipoCambio;
 
-	@NotBlank
+	@NotNull
 	private double ValorCarro;
 
 	@Pattern(regexp = "^[A-Z]{3}[0-9][A-Z][0-9]{2}$", message = "Placa inválida")
 	@NotBlank
 	private String PlacaCarro;
 
-	@NotBlank
+	@NotNull
 	private int Km;
 
 	@ManyToOne(cascade = CascadeType.MERGE)

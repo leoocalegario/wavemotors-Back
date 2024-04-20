@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -36,6 +37,7 @@ public class VendedoresControllerTest {
     @MockBean
     VendedoresRepository repository;
 
+    // se trata de uma anotation usada nos frameworks de teste para indicar que um metodo deve ser executado antes de cada metodo de testes.
     @BeforeEach
     void setup() {
         List<Vendedores> vendedores = new ArrayList<>();
@@ -47,6 +49,8 @@ public class VendedoresControllerTest {
         when(this.repository.findAll()).thenReturn(vendedores);
         when(this.repository.findByNomeLike("LEONARDO")).thenReturn(vendedores);
         when(this.repository.findByEmail("leo@hotmail.com")).thenReturn(vendedoresSalva);
+        when(this.repository.findById(1L)).thenReturn(Optional.of(vendedoresSalva));
+        doNothing().when(this.repository).deleteById(any(Long.class));
     }
 	
 	// ------------------------		Save	-----------------------------

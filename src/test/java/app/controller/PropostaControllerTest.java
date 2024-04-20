@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -45,6 +46,8 @@ public class PropostaControllerTest {
 		when(this.repository.findAll()).thenReturn(proposta);
 		when(this.repository.findByvalorProposta(23456.78)).thenReturn(proposta);
 		when(this.repository.findBydataCriado("2023-12-31")).thenReturn(proposta);
+		when(this.repository.findById(1L)).thenReturn(Optional.of(propostaSalva));
+		doNothing().when(this.repository).deleteById(any(Long.class));
 	}
 	// ------------------------ Save -----------------------------
 
@@ -179,6 +182,6 @@ public class PropostaControllerTest {
 	void verificarvalor() {
 		Proposta proposta = new Proposta();
 		proposta.setValorProposta(6000);
-
+	
 	}
 }

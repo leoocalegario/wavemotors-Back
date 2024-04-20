@@ -26,7 +26,8 @@ public class VendedoresController {
 
 	@Autowired
 	private VendedoresService vendedoresservice;
-
+		
+	//funcao para salvar cadastro do vendedor
 	@PostMapping("save")
 	public ResponseEntity<String> save(@RequestBody Vendedores vendedores) {
 		try {
@@ -37,7 +38,7 @@ public class VendedoresController {
 			return new ResponseEntity<String>("erro: " + e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
-
+	//funcao para fazer uma atualizacao no cadastro do vendedor
 	@PutMapping("/update/{idVendedor}")
 	public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Vendedores vendedores) {
 		try {
@@ -48,7 +49,7 @@ public class VendedoresController {
 			return new ResponseEntity<String>("erro: " + e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
-
+		//funcao para mostrar todos os cadastros de vendedores
 	@GetMapping("/listAll")
 	public ResponseEntity<List<Vendedores>> findAll() {
 		try {
@@ -60,7 +61,7 @@ public class VendedoresController {
 		}
 
 	}
-
+		//funcao para procurar vendedor pelo idVendedor
 	@GetMapping("/findById/{idVendedor}")
 	public ResponseEntity<Vendedores> findById(@PathVariable Long idVendedor) {
 		try {
@@ -70,7 +71,7 @@ public class VendedoresController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-
+		//funcao para excluir o id do vendedor
 	@DeleteMapping("/delete/{idVendedor}")
 	public ResponseEntity<String> delete(@PathVariable Long idVendedor) {
 		try {
@@ -82,7 +83,7 @@ public class VendedoresController {
 			return new ResponseEntity<String>("Ocorreu esse erro: " + e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
-
+		//funcao para procurar vendedor por nome
 	@GetMapping("/findByNomeLike")
 	public ResponseEntity<List<Vendedores>> findByNomeLike(@RequestParam String nome) {
 		try {
@@ -94,7 +95,7 @@ public class VendedoresController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-
+		//funcao para procurar vendedor por email
 	@GetMapping("/findByEmail")
 	public ResponseEntity<Vendedores> findByEmail(@RequestParam String email) {
 		try {

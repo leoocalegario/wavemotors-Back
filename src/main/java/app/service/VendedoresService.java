@@ -19,7 +19,7 @@ public class VendedoresService {
 		return vendedores.getNome() + "salvo com sucesso";
 
 	}
-
+	
 	public String update(Long id, Vendedores vendedores) {
 		vendedores.setIdVendedor(id);
 		this.vendedoresrepository.save(vendedores);

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -49,6 +50,8 @@ public class ClienteControllerTest {
 		when(this.repository.findByNomeLike("LEONARDO")).thenReturn(cliente);
 		when(this.repository.findByNome("LEONARDO")).thenReturn(cliente);
 		when(this.repository.findByCidade("Foz do Iguaçu")).thenReturn(cliente);
+		when(this.repository.findById(1L)).thenReturn(Optional.of(clienteSalva));
+		doNothing().when(this.repository).deleteById(any(Long.class));
 
 	}
 
