@@ -17,13 +17,13 @@ public class AnuncioVeiculoService {
 	public String save(AnuncioVeiculo anuncioveiculo) {
 
 		this.anuncioveiculorepository.save(anuncioveiculo);
-		return anuncioveiculo.getNomeVeiculo() + " salvo com sucesso";
+		return anuncioveiculo.getModelo() + " salvo com sucesso";
 	}
 
 	public String update(Long id, AnuncioVeiculo anuncioveiculo) {
 		anuncioveiculo.setIdAnuncio(id);
 		this.anuncioveiculorepository.save(anuncioveiculo);
-		return anuncioveiculo.getNomeVeiculo() + "atualizado com sucesso";
+		return anuncioveiculo.getModelo() + "atualizado com sucesso";
 	}
 
 	public String delete(Long idAnuncio) {
@@ -40,8 +40,13 @@ public class AnuncioVeiculoService {
 		return anuncioveiculo;
 	}
 
-	public List<AnuncioVeiculo> findByNomeVeiculoLike(String nomeVeiculo) {
-		List<AnuncioVeiculo> anuncioveiculo = anuncioveiculorepository.findByNomeVeiculoLike(nomeVeiculo);
+	public List<AnuncioVeiculo> findByModeloLike(String modelo) {
+		if(modelo.equals(""))
+			return this.findAll();
+		
+		System.out.println(modelo);
+		List<AnuncioVeiculo> anuncioveiculo = anuncioveiculorepository.findByModeloLike(modelo);
+		System.out.println(anuncioveiculo.size());
 		return anuncioveiculo;
 	}
 

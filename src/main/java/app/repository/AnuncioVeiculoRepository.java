@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
 
 import app.entity.AnuncioVeiculo;
 
@@ -11,7 +12,7 @@ public interface AnuncioVeiculoRepository extends JpaRepository<AnuncioVeiculo, 
 
 	public AnuncioVeiculo findByidAnuncio(Long idAnuncio);
 
-	@Query("From Veiculos v where v.nomeVeiculo LIKE %:nomeVeiculo")
-	public List<AnuncioVeiculo> findByNomeVeiculoLike(String nomeVeiculo);
+	@Query("SELECT v FROM AnuncioVeiculo v WHERE v.modelo LIKE CONCAT('%', :mod, '%')")
+	public List<AnuncioVeiculo> findByModeloLike(@Param("mod") String mod);
 
 }

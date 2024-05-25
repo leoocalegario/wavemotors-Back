@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import app.service.AnuncioVeiculoService;
 
 @RestController
 @RequestMapping("/api/anuncioveiculo")
+@CrossOrigin("*")
 @Validated
 public class AnuncioVeiculoController {
 	
@@ -33,7 +35,7 @@ public class AnuncioVeiculoController {
 			String mensagem = this.anuncioveiculoservice.save(anuncioveiculo);
 			return new ResponseEntity<String>(mensagem, HttpStatus.OK);
 		} catch (Exception e) {
-			
+			System.out.println(e.getMessage());
 			return new ResponseEntity<String>("erro: " +e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -44,7 +46,8 @@ public class AnuncioVeiculoController {
 			String mensagem = this.anuncioveiculoservice.update(id, anuncioveiculo);
 			return new ResponseEntity<String>(mensagem,HttpStatus.OK);
 		} catch (Exception e) {
-			
+			System.out.println(e.getMessage());
+
 			return new ResponseEntity<String>("erro: " + e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -84,10 +87,10 @@ public class AnuncioVeiculoController {
 
 	}
 	
-	@GetMapping("/findByNomeLike")
-	public ResponseEntity<List<AnuncioVeiculo>> findByNomeVeiculoLike(@RequestParam String nomeVeiculo) {
+	@GetMapping("/findByModeloLike")
+	public ResponseEntity<List<AnuncioVeiculo>> findByModeloLike(@RequestParam("modelo") String modelo) {
 	    try {
-	        List<AnuncioVeiculo> anuncioveiculo = this.anuncioveiculoservice.findByNomeVeiculoLike(nomeVeiculo);
+	        List<AnuncioVeiculo> anuncioveiculo = this.anuncioveiculoservice.findByModeloLike(modelo);
 	        return new ResponseEntity<>(anuncioveiculo, HttpStatus.OK);
 	    } catch (Exception e) {
 	        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);

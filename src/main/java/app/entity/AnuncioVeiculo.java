@@ -1,21 +1,20 @@
-package app.entity;
+	package app.entity;
 
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,58 +32,44 @@ public class AnuncioVeiculo {
 	private Long idAnuncio;
 
 	@NotBlank
-	private String data;
+	private String cor;
+	
+	@NotBlank
+	private String imagem;
 
 	@NotBlank
-	private String nomeVeiculo;
-
-	@NotBlank
-	private String Cor;
-
-	@NotBlank
-	private String Modelo;
+	private String modelo;
 
 	@NotNull
 	private int ano;
 
 	@NotNull
-	private int combustivel;
-
-	@Column(name = "flag_Ar")
-	@Basic
-	private boolean FlagArCondicionado;
-
-	@Column(name = "flag_BancoTipo")
-	@Basic
-	private boolean FlagBancoCouro;
-
-	@Column(name = "flag_Multimidia")
-	@Basic
-	private boolean FlagMultimidia;
-
-	@NotBlank
-	private String TipoCambio;
+	private String combustivel;
 
 	@NotNull
-	private double ValorCarro;
+	private double valorcarro;
 
-	@Pattern(regexp = "^[A-Z]{3}[0-9][A-Z][0-9]{2}$", message = "Placa inválida")
+	//@Pattern(regexp = "^'", message = "Placa inválida")
 	@NotBlank
-	private String PlacaCarro;
+	private String placacarro;
 
 	@NotNull
-	private int Km;
+	private int km;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JsonIgnoreProperties("anuncio_veiculo")
+	@JsonIgnoreProperties("anuncioveiculo")
 	private Vendedores vendedores;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JsonIgnoreProperties("anuncio_veiculos")
+	@JsonIgnoreProperties("anuncioveiculo")
 	private VeiculosMarca veiculosmarca;
 
 	@OneToMany(mappedBy = "anuncioveiculo")
 	@JsonIgnoreProperties("anuncioveiculo")
 	private List<Proposta> proposta;
+	
+	@ManyToMany
+	@JoinTable(name="carro_acessorio")
+	private List<Acessorio> acessorios;
 
 }
